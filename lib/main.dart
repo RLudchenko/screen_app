@@ -12,7 +12,8 @@ class MyApp extends StatelessWidget {
       body: Center(
         child: Text(
           'Hey there',
-          style: TextStyle(fontSize: 30.0, color: Colors.white),
+          style: TextStyle(
+              fontSize: 40.0, color: Colors.white, fontFamily: 'Lobster'),
         ),
       ),
     );
