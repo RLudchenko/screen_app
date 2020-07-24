@@ -1,24 +1,53 @@
+import 'dart:math';
 import 'package:flutter/material.dart';
 
 void main() {
   runApp(MaterialApp(home: MyApp()));
 }
 
-class MyApp extends StatelessWidget {
+class MainVidget extends StatefulWidget {
+  @override
+  MainVidgetState createState() => MainVidgetState();
+}
+
+class MainVidgetState extends State<MainVidget> {
+  Color mainColor = Colors.white;
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Color(0xff388E3C),
-      body: Center(
-        child: Text(
-          'Hey there',
-          style: TextStyle(
-              fontSize: 40.0, color: Colors.white, fontFamily: 'Lobster'),
-        ),
-      ),
+    return MaterialApp(
+        title: 'Welcome to Flutter',
+        home: Scaffold(
+          backgroundColor: mainColor,
+          appBar: AppBar(
+            title: Text('Tap anywhere'),
+          ),
+          body: GestureDetector(
+            behavior: HitTestBehavior.translucent, //or HitTestBehavior.opaque
+            onTap: () {
+              setState(() {
+                final rnd = Random();
+
+                mainColor = Color(rnd.nextInt(0xffffffff));
+              });
+            },
+            child: Center(
+              child: Text('Hey there', style: TextStyle(
+                  fontSize: 40.0, color: Colors.redAccent, fontFamily: 'Lobster')),
+            ),
+          ),
+        )
     );
   }
 }
+
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MainVidget();
+  }
+}
+
 
 class MyHomePage extends StatefulWidget {
   MyHomePage({Key key, this.title}) : super(key: key);
@@ -45,7 +74,6 @@ class _MyHomePageState extends State<MyHomePage> {
       ),
       body: Center(
         child: Column(
-
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Text(
